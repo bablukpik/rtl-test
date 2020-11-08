@@ -93,5 +93,17 @@ test('renders learn react link', () => {
     </Provider>);
   const linkElement = getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
+  expect(linkElement).toHaveTextContent('Learn React');
 });
+
+// Snapshot
+test("Snapshot", ()=>{
+  const view =  render(
+    <Provider store={store}>
+      <App />
+    </Provider>);
+  expect(view.getByText('Learn React')).toMatchSnapshot();
+  expect(view.asFragment()).toMatchSnapshot();
+});
+
 
