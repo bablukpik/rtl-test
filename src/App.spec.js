@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import * as ReactDom from 'react-dom';
+import ReactDom from 'react-dom';
 import { getQueriesForElement } from '@testing-library/dom'
 import App from './App';
 import { Provider } from 'react-redux';
