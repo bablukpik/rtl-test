@@ -7,7 +7,7 @@ import Fetch from "./AxiosMock";
 afterEach(cleanup);
 
 // Mock axios another way
-jest.mock('axios');
+// jest.mock('axios');
 
 it("fetches and displays data", async () => {
     // We'll be explicit about what data Axios is to return when `get` is called.
