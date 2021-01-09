@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ReactDom from 'react-dom';
 import { getQueriesForElement } from '@testing-library/dom'
 import App from './App';
@@ -64,8 +64,8 @@ test('ReactDom + Jest + DTL', () => {
     );
     return getQueriesForElement(root);
   };
-  const {getByText} = render(<App />);
-  const actual = getByText('Learn React');
+  const c = render(<App />);
+  const actual = c.getByText('Learn React');
   expect(actual).not.toBeNull();
 });
 
@@ -94,6 +94,23 @@ test('renders learn react link', () => {
   const linkElement = getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
   expect(linkElement).toHaveTextContent('Learn React');
+});
+
+test("everything is a node", () => {
+  const Foo = () => <div>Hello</div>;
+  render(<Foo />);
+  expect(screen.getByText("Hello")).toBeInstanceOf(Node);
+});
+
+test("the button has type of reset", () => {
+  const ResetButton = () => (
+    <button type="reset">
+      <div>Reset</div>
+    </button>
+  );
+  render(<ResetButton />);
+  const node = screen.getByText("Reset");
+  expect(node.closest("button")).toHaveProperty("type", "reset");
 });
 
 // Snapshot
